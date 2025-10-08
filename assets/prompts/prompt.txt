@@ -1,0 +1,94 @@
+PROMPT 1: Estrutura Base, Contexto e Arquivos Iniciais
+
+Contexto: Atue como um desenvolvedor de jogos sênior, especialista em criar jogos 2D clássicos com tecnologias web modernas (HTML5 Canvas, JavaScript ES6+, CSS). Sua tarefa é gerar a estrutura inicial para um projeto completo do jogo "Asteroides Clássico".
+Requisitos:
+1. Estrutura de Arquivos: Crie o conteúdo para três arquivos: index.html, style.css, e main.js.
+2. HTML & CSS: O index.html deve conter apenas o elemento <canvas>. O style.css deve centralizar o canvas, aplicar um fundo preto à página e usar uma fonte de fácil leitura.
+3. JavaScript (main.js): Crie um esqueleto para o main.js. Ele deve configurar o canvas, mas o loop de jogo ainda não precisa estar funcional. Deixe comentários indicando onde cada parte do jogo será adicionada. O jogo deve ser autocontido, rodando diretamente ao abrir o arquivo index.html.
+Saída Esperada: Gere o código-fonte para os três arquivos (index.html, style.css, main.js) com a estrutura base pronta.
+
+PROMPT 2: Loop de Animação e Cenário com Paralaxe
+
+Contexto: Com base no código anterior, vamos implementar o coração da animação e o cenário do jogo.
+Requisitos:
+1. Loop de Animação: No main.js, implemente o loop principal do jogo usando requestAnimationFrame(). Crie uma clara separação entre a lógica (update(deltaTime)) e a renderização (draw()). A função update deve calcular o deltaTime para garantir que a animação seja suave e independente da taxa de quadros.
+2. Cenário com Paralaxe: Implemente um fundo espacial com 2 camadas de estrelas (uma mais distante e lenta, outra mais próxima e rápida) para simular profundidade (efeito paralaxe). Essas estrelas podem ser representadas por pequenos retângulos ou círculos que se movem verticalmente ou em uma direção fixa.
+Saída Esperada: Modifique o main.js para incluir um loop de jogo funcional e o desenho do fundo com efeito paralaxe.
+
+PROMPT 3: Implementação da Nave (Player), Controles e Física
+
+Contexto: Agora, vamos adicionar a nave do jogador, seus controles e as regras de movimento específicas do Asteroides.
+Requisitos:
+1. Entidade Player (Nave): Crie uma classe ou objeto para o Player. A nave deve ser representada visualmente por um triângulo. Ela deve ter propriedades para posição, velocidade, ângulo de rotação e vidas.
+2. Controles da Nave:
+    Rotação: Teclas de Seta Esquerda/Direita (ou A/D) devem rotacionar a nave.
+    Aceleração: Tecla de Seta Cima (ou W) deve aplicar um impulso (aceleração) na direção em que a nave está apontando.
+3. Física e Movimento:
+    Inércia: A nave deve ter inércia. Ela continua a se mover mesmo após a tecla de aceleração ser solta, possivelmente com um leve atrito para desacelerar gradualmente.
+    Screen Wrap: A nave deve "dar a volta" na tela. Quando ela sai por um lado, deve reaparecer no lado oposto.
+Saída Esperada: Atualize o main.js com a lógica da nave, incluindo seu desenho, controles de teclado, física de inércia e a funcionalidade de screen wrap.
+
+
+PROMPT 4: Sistema de Disparo e Projéteis
+
+Contexto: Com a nave se movendo, o próximo passo é implementar o sistema de disparo.
+Requisitos:
+1. Entidade Projétil: Crie uma classe ou objeto para o Projectile. Projéteis são disparados a partir da ponta da nave.
+2. Lógica de Disparo: A Barra de Espaço deve disparar um projétil.
+3. Gerenciamento de Projéteis:
+    Os projéteis devem ter um tempo de vida ou alcance limitado para desaparecerem após um certo tempo, evitando poluir o jogo.
+    Eles também devem seguir a regra de Screen Wrap.
+    Otimização: Evite criar novos objetos (new Projectile()) dentro do loop a cada disparo. Gerencie os projéteis em um array.
+Saída Esperada: Modifique o main.js para permitir que a nave dispare projéteis que se movem pela tela, respeitando as regras de movimento e tempo de vida.
+
+
+PROMPT 5: Implementação dos Asteroides
+
+Contexto: Agora precisamos de alvos. Vamos criar os asteroides com sua lógica característica de quebra.
+Requisitos:
+1. Entidade Asteroide: Crie uma classe ou objeto para o Asteroid. Eles devem ter diferentes tamanhos (grande, médio, pequeno).
+2. Geração (Spawn): Os asteroides devem surgir fora da tela em posições e com direções aleatórias.
+3. Lógica de Quebra: A principal mecânica dos asteroides deve ser implementada:
+    Ao serem atingidos, asteroides grandes se dividem em dois asteroides de tamanho médio.
+    Asteroides médios se dividem em dois pequenos.
+    Asteroides pequenos são completamente destruídos.
+    Por enquanto, essa lógica pode ser preparada na classe do asteroide, para ser ativada no próximo passo com as colisões.
+4. Movimento: Asteroides também devem seguir a regra de Screen Wrap.
+Saída Esperada: Adicione ao main.js a lógica dos asteroides, incluindo sua criação, movimento e a estrutura para a mecânica de quebra. Faça com que uma onda inicial de asteroides apareça na tela.
+
+
+PROMPT 6: Detecção de Colisão (AABB)
+
+Contexto: Com todas as entidades na tela, vamos implementar as interações entre elas através da detecção de colisão.
+Requisitos:
+1. Função de Colisão: Crie uma função de detecção de colisão usando o método AABB (Axis-Aligned Bounding Box).
+2. Interações de Colisão:
+    Projétil vs Asteroide: Quando um projétil atinge um asteroide, o projétil deve ser removido. O asteroide deve acionar sua lógica de quebra (se dividindo ou sendo destruído).
+    Nave vs Asteroide: Quando a nave colide com um asteroide, o jogador deve perder uma vida. A nave deve ser "destruída" e recriada no centro da tela, idealmente com um breve período de invencibilidade para dar ao jogador a chance de escapar.
+Saída Esperada: Implemente no main.js a detecção de colisão e as consequências para cada tipo de interação, conectando a lógica das entidades já criadas.
+
+PROMPT 7: Animação de Explosão com Spritesheet
+
+Contexto: Para dar um feedback visual mais impactante, vamos adicionar animações de explosão.
+Requisitos:
+1. Lógica de Animação: Implemente uma classe ou sistema para gerenciar animações baseadas em spritesheets.
+2. Integração: Quando um asteroide ou a nave é destruído (após uma colisão), uma animação de explosão deve ser reproduzida naquele local.
+3. Renderização por Clipping: O código deve usar o método ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh) para realizar o clipping do spritesheet e desenhar o frame correto da animação a cada instante.
+4. Placeholder: Como não temos uma imagem, descreva nos comentários do código qual seria o nome do arquivo de imagem (ex: explosao.png) e como a imagem deveria ser (ex: uma tira com 5 frames de 64x64 pixels). O código deve funcionar como se a imagem estivesse lá.
+Saída Esperada: Adicione ao main.js o código necessário para gerenciar e renderizar uma animação de spritesheet nos eventos de destruição de naves e asteroides.
+
+
+PROMPT 8: HUD, Pontuação, Vidas e Finalização
+
+Contexto: Para finalizar o gameplay loop, vamos adicionar a interface do usuário (HUD) e as condições de vitória/derrota.
+Requisitos:
+1. HUD (Heads-Up Display):
+    Desenhe na tela a pontuação atual do jogador. A pontuação deve aumentar cada vez que um asteroide é atingido.
+    Exiba o número de vidas restantes. Isso pode ser feito com texto ou desenhando pequenos ícones da nave no canto da tela.
+2. Estado de Jogo (Game Over):
+    Quando o número de vidas do jogador chegar a zero, o jogo deve parar.
+    Exiba uma mensagem de "Fim de Jogo" ("Game Over") e a pontuação final na tela.
+3. Qualidade de Código: Revise todo o código do main.js e adicione comentários explicativos em cada seção (ex: // Configurações, // Entidades, // Lógica do Jogo, // Loop Principal, etc.) para garantir que o código seja limpo e fácil de entender.
+Saída Esperada: Complete o main.js com o HUD funcional, o sistema de pontuação, o controle de vidas e a tela de "Game Over". O jogo deve estar funcionalmente completo.
+
+
