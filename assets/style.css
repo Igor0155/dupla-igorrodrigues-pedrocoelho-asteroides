@@ -1,14 +1,41 @@
-html, body {
+body {
   margin: 0;
-  height: 100%;
-  display: grid;
-  place-items: center;
-  background: #111;
-  color: #eee;
-  font-family: system-ui, sans-serif;
+  padding: 0;
+  background-color: #000000;
+  color: #ffffff;
+  font-family: "Courier New", Courier, monospace;
+  overflow: hidden; /* Evita barras de rolagem */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
+
 canvas {
-  background: #000;
-  border: 2px solid #444;
-  image-rendering: pixelated;
+  background-color: #0a0a1a; /* Um fundo azul escuro profundo para o espaço */
+  display: block;
+}
+
+/* --- ESTILOS DO BOTÃO DE REINÍCIO --- */
+#restartButton {
+  display: none; /* Começa escondido */
+  position: absolute;
+  top: 65%; /* Posicionado abaixo da mensagem de Game Over */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 15px 30px;
+  font-size: 22px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #1a1a2a;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#restartButton:hover {
+  background-color: #ffffff;
+  color: #000000;
 }
